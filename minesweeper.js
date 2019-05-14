@@ -6,32 +6,31 @@ var board = {
           {row: 1, col: 0, isMine: true, hidden: true},{row: 1, col: 1, isMine: false, hidden: true},{row: 1,col: 2, isMine: true, hidden: true},{row: 1,col: 3, isMine: false, hidden: true},
           {row: 2, col: 0, isMine: true, hidden: true},{row: 2, col: 1, isMine: true, hidden: true},{row: 2,col: 2, isMine: false, hidden: true},{row: 2,col: 3, isMine: false, hidden: true},
           {row: 3, col: 0, isMine: true, hidden: true},{row: 3, col: 1, isMine: false, hidden: true},{row: 3,col: 2, isMine: false, hidden: true},{row: 3,col: 3, isMine: true, hidden: true}]
-}
+            }
 function startGame() {
   for (let i = 0; i < board.cells.length; i++) {
-    countSurroundingMines(board.cells[i])
-    // = board.cells[i].surroundingMines
+    countSurroundingMines(board.cells[i]) 
+    //= board.cells[i].surroundingMines
     // var surroundingCells = getSurroundingCells(row, col);
   }
   // Don't remove this function call: it makes the game work!
   lib.initBoard()
-}
-document.addEventListener("click", checkForWin());
-document.addEventListener("contextmenu", checkForWin());
+  }
+document.addEventListener("click", checkForWin)
+document.addEventListener("contextmenu", checkForWin);
 // Define this function to look for a win condition:
 //
 // 1. Are all of the cells that are NOT mines visible?
 // 2. Are all of the mines marked?
 function checkForWin() {
-    for (var i = 0; i < board.cells.length; i++) {
-    if ((isMine === true) && (isMarked === false)) {
-      lib.displayMessage("Nah. not yet. Keep trying!");
+  for (var i = 0; i < board.cells.length; i++) {
+    if (board.cells[i].isMine === false && board.cells[i].hidden === true) {
+    return;
+    } 
     }
-    else if ((hidden === true) && (isMarked === true)) {
-      lib.displayMessage("Nah, not yet Keep trying!");
-    }
-    else if ((isMine === true) && (isMarked === true)) {
-      lib.displayMessage('You Legend!');
+  for (var i = 0; i < board.cells.length; i++) {
+    if (board.cells[i].isMine === true && board.cells[i].isMarked === false) {
+    return;
     }
   }
   // You can use this function call to declare a winner (once you've
